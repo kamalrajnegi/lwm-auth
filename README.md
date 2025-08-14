@@ -1,12 +1,12 @@
-# Lightweight Mutual Authentication and Key Agreement Protocol (LWM-Auth)
+# Lightweight Mutual Authentication and Key Agreement Protocol (LWM-Auth) V 2.0
 
 LWM-Auth is a lightweight mutual authentication and key agreement protocol originally designed for IoT devices embedded with a Physically Unclonable Function (PUF) to provide security to the system and protect the IoT device from physical cyber attacks.
 
 ## Device Registration
-<img src="https://lwm-auth.org/img/device_registration.png" width="300" alt="Device Registration" />
+<img src="docs/figures/device_registration.png" width="300" alt="Device Registration" />
  
 ## Mutual Authentication and Key Agreement
-<img src="https://lwm-auth.org/img/device_authentication.png" width="300" alt="Device Registration" />
+<img src="docs/figures//device_authentication.png" width="300" alt="Device Registration" />
 
 ## Read More
 ### PUF-based Lightweight Mutual Authentication Protocol for Internet of Things (IoT) Devices
