@@ -1,6 +1,8 @@
 /*
-Designed By:
+------------------------------
+Coded By:
 Kamal Raj (kamal@kamalraj.in)
+------------------------------
 */
 module lwm_auth_top(
     clk,

@@ -1,7 +1,8 @@
 /*
-
-Designed By:
+------------------------------
+Coded By:
 Kamal Raj (kamal@kamalraj.in)
+------------------------------
 */
 module demo_puf(
     clk,
