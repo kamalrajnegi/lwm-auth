@@ -3,3 +3,4 @@ docs/*
 !docs/lwmauth-docs-main.tex
 !docs/lwmauth-docs-main.pdf
 !docs/references.bib
+python_src/__pycache__

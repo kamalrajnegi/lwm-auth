@@ -16,7 +16,7 @@ puf_uid = b'abcdef'
 def demo_puf(challenge):
     make_puf = puf_uid + challenge
     response = ascon.ascon_hash(message=make_puf)
-    return response
+    return response[:16]
 
 if __name__ == "__main__":
     challenge = b'0001'
