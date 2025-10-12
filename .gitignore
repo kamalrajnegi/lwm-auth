@@ -4,3 +4,4 @@ docs/*
 !docs/lwmauth-docs-main.pdf
 !docs/references.bib
 python_src/__pycache__
+python_src/temp_data.txt

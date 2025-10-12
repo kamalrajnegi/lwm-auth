@@ -25,27 +25,40 @@ def mutual_auth():
     rsp = json.loads(rsp)
 
     # Step-2: Authenticate server
-    ch1 = bytes.fromhex(rsp['c1'])
-    r1 = puf.demo_puf(ch1)
-    authentic = lwmauth.auth_server(r1,rsp['nonce'],rsp['tag1'])
+    first_challenge = bytes.fromhex(rsp['c1'])
+    first_response = puf.demo_puf(first_challenge)
+    session_id = rsp['nonce']
+    auth_tag1 = rsp['tag1']
+    authentic = lwmauth.auth_server(first_response,session_id,auth_tag1)
 
     if(authentic):
         print("Server is authentic")
+        second_challenge = rsp['c2']
     else:
         print("Server is not authentic")
+        # second_challenge = random_challenge
     
     # Step-3: Send request for give challenge
-    ch2 = bytes.fromhex(rsp['c2'])
-    r2 = puf.demo_puf(ch2)
-    tag2 = lwmauth.send_challenge_response(r2,rsp['nonce'])
+    second_challenge = bytes.fromhex(rsp['c2'])
+    second_response = puf.demo_puf(second_challenge)
+    nonce = rsp['nonce']                                                            #need to update the nonce
+    lwmauth.send_challenge_response(trusted_server,second_response,nonce,session_id)                    #original nonce is now token for session
 
     # Step-4: Generate key and use it for secure communication
-    key = lwmauth.keygen(r1,r2)
+    key = lwmauth.keygen(first_response,second_response)
+    with open("temp_data.txt", "w") as f:
+        f.write(key.hex())
 
     return key
 
 def secure_communication():
-    lwmauth.send_message_securely()
+    with open("temp_data.txt", "r") as f:
+        key = f.read().strip()
+    key = byte_data = bytes.fromhex(key)
+    nonce = b'\x00\x00x\00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+    session_id = nonce.hex()
+    message = b'hello lwm-auth'
+    lwmauth.send_message_securely(trusted_server,session_id,message,nonce,key)
 
 if __name__ == "__main__":
     try:
